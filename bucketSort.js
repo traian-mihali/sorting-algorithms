@@ -54,7 +54,71 @@ const sortedValues = buckets => {
   return values;
 };
 
-console.log(bucketSort([4, 1, 5, 3, 8, 6])); // [1, 3, 4, 5, 6, 8]
-console.log(bucketSort([8, 6, 7, 1, 3, 9, 2, 5, 4, 1, 3], 3)); //  [1, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]
-console.log(bucketSort([8, 15, 6, 11, 7, 4, 19, 16, 1, 14, 3], 5)); // [1, 3, 4, 6, 7, 8, 11, 14, 15, 16, 19]
-console.log(bucketSort([18, 45, 66, 41, 77, 34, 9, 16, 1, 32, 73, 88, 85])); // [1, 9, 16, 18, 32, 34, 41, 45, 66, 73, 77, 85, 88]
+mocha.setup("bdd");
+const { assert } = chai;
+
+describe("BucketSort", () => {
+  it("should sort the array", () => {
+    const array = [4, 1, 5, 3, 8, 6];
+
+    assert.deepStrictEqual(bucketSort(array), [1, 3, 4, 5, 6, 8]);
+  });
+
+  it("should sort the array1", () => {
+    const array1 = [8, 6, 7, 1, 3, 9, 2, 5, 4, 1, 3];
+
+    assert.deepStrictEqual(bucketSort(array1, 3), [
+      1,
+      1,
+      2,
+      3,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]);
+  });
+
+  it("should sort the array2", () => {
+    const array2 = [8, 15, 6, 11, 7, 4, 19, 16, 1, 14, 3];
+
+    assert.deepStrictEqual(bucketSort(array2, 5), [
+      1,
+      3,
+      4,
+      6,
+      7,
+      8,
+      11,
+      14,
+      15,
+      16,
+      19
+    ]);
+  });
+
+  it("should sort the array3", () => {
+    const array3 = [18, 45, 66, 41, 77, 34, 9, 16, 1, 32, 73, 88, 85];
+
+    assert.deepStrictEqual(bucketSort(array3), [
+      1,
+      9,
+      16,
+      18,
+      32,
+      34,
+      41,
+      45,
+      66,
+      73,
+      77,
+      85,
+      88
+    ]);
+  });
+});
+
+mocha.run();
